@@ -2,7 +2,6 @@ package com.cpearl.researchprogress.capability;
 
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
-import java.util.Collection;
 import java.util.Map;
 
 @AutoRegisterCapability

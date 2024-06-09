@@ -19,7 +19,7 @@ public class ResearchMessage {
     private final Map<String, Integer> researches;
     private final int type;
     public ResearchMessage(Map<String, Integer> phases, int type) {
-        this.researches = new HashMap<>(phases);
+        this.researches = new TreeMap<>(phases);
         this.type = type;
     }
 
@@ -50,7 +50,7 @@ public class ResearchMessage {
         assert nbt != null;
         var type = nbt.getInt("Type");
         var listResearches = nbt.getList("Researches", Tag.TAG_COMPOUND);
-        Map<String, Integer> researches = new HashMap<>();
+        Map<String, Integer> researches = new TreeMap<>();
         for (int i = 0; i < listResearches.size(); i++) {
             var researchTag = listResearches.getCompound(i);
             researches.put(researchTag.getString("Research"), researchTag.getInt("Points"));

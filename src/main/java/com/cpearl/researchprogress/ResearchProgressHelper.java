@@ -8,24 +8,24 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.network.PacketDistributor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ResearchProgressHelper {
     public static Map<String, Integer> getResearches(ServerPlayer player) {
         final Map<String, Integer>[] ret = (Map<String, Integer>[]) new Map<?, ?>[1];
         player.getCapability(ResearchCapabilityProvider.RESEARCH).ifPresent(researchCapability -> {
-            ret[0] = new HashMap<>(researchCapability.getResearches());
+            ret[0] = new TreeMap<>(researchCapability.getResearches());
         });
         return ret[0];
     }
 
     public static void addResearchPoints(ServerPlayer player, String research, int point) {
         player.getCapability(ResearchCapabilityProvider.RESEARCH).ifPresent(researchCapability -> {
-            var researchesOld = new HashMap<>(researchCapability.getResearches());
+            var researchesOld = new TreeMap<>(researchCapability.getResearches());
             researchCapability.addResearchPoints(research, point);
-            var researchesNew = new HashMap<>(researchCapability.getResearches());
+            var researchesNew = new TreeMap<>(researchCapability.getResearches());
 
             if (MinecraftForge.EVENT_BUS.post(new ResearchesUpdateEvent(researchesOld, researchesNew, player)))
                 researchCapability.addResearchPoints(research, -point);
@@ -36,9 +36,9 @@ public class ResearchProgressHelper {
 
     public static void setResearchPoints(ServerPlayer player, String research, int point) {
         player.getCapability(ResearchCapabilityProvider.RESEARCH).ifPresent(researchCapability -> {
-            var researchesOld = new HashMap<>(researchCapability.getResearches());
+            var researchesOld = new TreeMap<>(researchCapability.getResearches());
             researchCapability.addResearchPoints(research, point);
-            var researchesNew = new HashMap<>(researchCapability.getResearches());
+            var researchesNew = new TreeMap<>(researchCapability.getResearches());
 
             if (MinecraftForge.EVENT_BUS.post(new ResearchesUpdateEvent(researchesOld, researchesNew, player)))
                 researchCapability.addResearchPoints(research, -point);
@@ -49,11 +49,11 @@ public class ResearchProgressHelper {
 
     public static void clearResearch(ServerPlayer player) {
         player.getCapability(ResearchCapabilityProvider.RESEARCH).ifPresent(researchCapability -> {
-            var researchesOld = new HashMap<>(researchCapability.getResearches());
+            var researchesOld = new TreeMap<>(researchCapability.getResearches());
             if (researchesOld.isEmpty())
                 return;
             researchCapability.clearResearch();
-            var researchesNew = new HashMap<>(researchCapability.getResearches());
+            var researchesNew = new TreeMap<>(researchCapability.getResearches());
             if (MinecraftForge.EVENT_BUS.post(new ResearchesUpdateEvent(researchesOld, researchesNew, player)))
                 researchCapability.setResearches(researchesOld);
             else
