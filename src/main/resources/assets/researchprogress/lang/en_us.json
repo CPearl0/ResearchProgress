@@ -1,0 +1,6 @@
+{
+  "commands.researchprogress.info": "%s has the following research points: %s",
+  "commands.researchprogress.add": "%s gained research %s's %d points",
+  "commands.researchprogress.set": "%s's research points on %s have been set to %d",
+  "commands.researchprogress.clear": "%s lost all the research points"
+}

@@ -1,0 +1,6 @@
+{
+  "commands.researchprogress.info": "%s 拥有的研究点数: %s",
+  "commands.researchprogress.add": "%s 获得了 %s 上的 %d 个研究点数",
+  "commands.researchprogress.set": "%s 在 %s 上的研究点数被设置为 %d 个",
+  "commands.researchprogress.clear": "%s 失去了所有研究点数"
+}
