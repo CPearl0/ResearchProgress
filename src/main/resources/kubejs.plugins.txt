@@ -1,1 +1,1 @@
-com.cpearl.researchprogress.compat.kjs.GamePhasePlugin
+com.cpearl.researchprogress.compat.kjs.ResearchProgressPlugin
